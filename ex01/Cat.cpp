@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 17:42:15 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/23 17:33:22 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/01/25 17:30:54 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Cat::Cat( const Cat& other ) : Animal( other )
 				<< std::endl;
 
 	this->type = other.type;
-	this->brain = other.brain;
+	this->brain = new Brain( *other.brain );
 }
 
 Cat::~Cat()
@@ -47,9 +47,10 @@ Cat& Cat::operator=( const Cat& other )
 
 	if (this != &other)
 	{
+		delete ( this->brain );
 		Animal::operator=( other );
 		this->type = other.type;
-		this->brain = other.brain;
+		this->brain = new Brain( *other.brain );
 	}
 
 	return (*this);

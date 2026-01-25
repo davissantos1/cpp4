@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 20:26:21 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/23 17:36:26 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/01/25 17:44:07 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ int	main(int ac, char **av)
 		std::cout	<< "========= DOG AND CAT ARRAY TEST ========="
 					<< std::endl << std::endl; 
 
-		Animal** animals = new Animal*[100];
+		Animal** animals = new Animal*[4];
 	
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < 2; i++)
 			animals[i] = new Dog();
 
-		for (int j = 50; j < 100; j++)
+		for (int j = 2; j < 4; j++)
 			animals[j] = new Cat();
 
 		std::cout << std::endl;
@@ -72,11 +72,13 @@ int	main(int ac, char **av)
 		std::cout	<< "========= MAKE SOUND METHOD TEST ========="
 					<< std::endl << std::endl; 
 		
-		std::cout << "Array animal sounds:" << std::endl;
+		std::cout << "Array animal sounds:" << std::endl << std::endl;
 		animals[0]->makeSound();
-		animals[50]->makeSound();
+		animals[3]->makeSound();
 
-		std::cout << "Regular animal sounds:" << std::endl;
+		std::cout << std::endl;
+
+		std::cout << "Regular animal sounds:" << std::endl << std::endl;
 		animal.makeSound();
 		dog.makeSound();
 		cat.makeSound();
@@ -88,7 +90,7 @@ int	main(int ac, char **av)
 		std::cout	<< "========= ARRAY DESTRUCTOR TEST ========="
 					<< std::endl << std::endl; 
 
-		for (int k = 0; k < 100; k++)
+		for (int k = 0; k < 4; k++)
 			delete (animals[k]);
 		
 		delete[] animals;
@@ -113,7 +115,7 @@ int	main(int ac, char **av)
 		delete (animalCat);
 		delete (dogCopy);
 
-
+		std::cout << std::endl;
 		std::cout	<< "========= DEFAULT STACK DESTRUCTOR TEST ========="
 					<< std::endl << std::endl; 
 	}
