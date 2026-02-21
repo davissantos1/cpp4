@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 17:37:39 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/29 18:11:31 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 18:20:02 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,15 @@ AMateria::AMateria() : _type( "default" ) {}
 
 AMateria::AMateria(std::string const & type) : _type(type) {}
 
-~AMateria::AMateria() {}
+AMateria::~AMateria() {}
 
-AMateria::AMateria( const AMateria& other )
-{
-	if (this != &other)
-		*this = other;
-}
+AMateria::AMateria( const AMateria& other ): _type( other._type ) {}
 
 // Operator Overloading
 
 AMateria&	AMateria::operator=( const AMateria& other )
 {
-	if (this != &other)
-		this->_type = other._type;
-
+	(void) other;
 	return (*this);
 }
 
@@ -40,11 +34,13 @@ AMateria&	AMateria::operator=( const AMateria& other )
 
 std::string const & AMateria::getType() const
 {
-	return (this->type);
+	return (this->_type);
 }
 
 // Other Methods
-void use(ICharacter& target)
+void AMateria::use(ICharacter& target)
 {
-	// what to do?
+	std::cout	<< "* Uses generic material at "
+				<< target.getName()
+				<< " *" << std::endl;
 }

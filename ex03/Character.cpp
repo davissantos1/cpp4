@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:07:50 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/29 19:01:26 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 19:48:10 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,26 @@
 
 // Constructors / Destructors
 
-Character::Character()
+Character::Character(): _name( "default name") 
 {
-
-
+	for (int i = 0; i < this->_inventorySize; i++)
+		this->_inventory[i] = NULL;
 }
 
-~Character::Character() {}
+Character::~Character() 
+{
+	for (int i = 0; i < this->_inventorySize; i++)
+	{
+		if (this->_inventory[i])
+			delete(this->_inventory[i]);
+	}
+}
 
 Character::Character( const Character& other )
 {
+	for (int i = 0; i < this->_inventorySize; i++)
+		this->_inventory[i] = NULL;
+
 	if (this != &other)
 		*this = other;
 }
@@ -33,8 +43,16 @@ Character::Character( const Character& other )
 Character&	Character::operator=( const Character& other )
 {
 	if (this != &other)
-		this->_type = other._type;
-
+	{
+		this->_name = other._name;
+		for (int i = 0; i < this->_inventorySize; i++)
+		{
+			if (this->_inventory[i])
+				delete(this->_inventory[i]);
+			if (other._inventory[i])
+				this->_inventory[i] = other._inventory[i].clone();
+		}
+	}
 	return (*this);
 }
 
@@ -42,20 +60,33 @@ Character&	Character::operator=( const Character& other )
 
 std::string	const& Character::getName() const
 {
-
+	return (this->_name);
 }
 
 void	Character::equip(AMateria* m)
 {
-
+	for (int i = 0; i < this->_inventorySize; i++)
+	{
+		if (!this->_inventory[i])
+		{
+			this->_inventory[i] = m;
+			return ;
+		}
+	}
+	std::cout	<< this->getName()
+				<< ": my inventory is full, unequip and try again!"
+				<< std::endl;
 }
 
 void	Character::unequip(int idx)
 {
-
+	if (idx >= 0 && idx < this->_inventorySize)
+		this->_inventory[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter& target)
 {
-
+	if (idx >= 0 && idx < this->_inventorySize)
+		if (this->_inventory[idx] )
+			this->_inventory[idx]->use(target);
 }

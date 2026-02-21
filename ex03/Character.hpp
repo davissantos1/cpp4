@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:32:15 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/29 18:49:13 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 18:55:23 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 class Character : public ICharacter
 {
 	private:
-		std::string _name;
-		AMateria	_materia[4];
+		static const int 	_inventorySize = 4;
+		std::string 		_name;
+		AMateria			*_inventory[_inventorySize];
 
 	public:
 		Character();

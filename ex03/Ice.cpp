@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:07:50 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/29 18:23:15 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 17:21:45 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,27 @@
 
 Ice::Ice() : AMateria( "ice" ) {}
 
-~Ice::Ice() {}
+Ice::~Ice() {}
 
-Ice::Ice( const Ice& other )
-{
-	if (this != &other)
-		*this = other;
-}
+Ice::Ice( const Ice& other ): AMateria( other ) {}
 
 // Operator Overloading
 
 Ice&	Ice::operator=( const Ice& other )
 {
-	if (this != &other)
-		this->_type = other._type;
-
+	(void) other;
 	return (*this);
 }
 
 // Other Methods
 AMateria*	Ice::clone() const
 {
-	AMateria* clone = new Ice();
-	*clone = *this;
-
-	return (clone);
+	return (new Ice(*this));
 }
 
-void Ice::use( ICharacter& target );
+void Ice::use( ICharacter& target )
 {
-	std::cout	<< "* shoots an ice bolt at " << target
+	std::cout	<< "* shoots an ice bolt at " 
+				<< target.getName()
 				<< " *" << std::endl;
 }
