@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:32:15 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/29 18:59:09 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 19:53:10 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class MateriaSource : public IMateriaSource
 
 		MateriaSource&	operator=( const MateriaSource& other );
 
-		void learnMateria(AMateria*) = 0;
-		AMateria* createMateria(std::string const & type) = 0;
+		void learnMateria(AMateria*);
+		AMateria* createMateria(std::string const & type);
 };
 
 #endif
