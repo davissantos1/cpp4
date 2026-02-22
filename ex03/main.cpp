@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 20:26:21 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/21 21:26:28 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 17:09:44 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,99 @@ int	main(int ac, char **av)
 	{
 		std::cout << std::endl;
 
-		std::cout	<< "========= DEFAULT STACK CONSTRUCTOR TEST ========="
+		std::cout	<< "========= CHARACTER TEST ========="
 					<< std::endl << std::endl; 
 
+		Character	testCharacter( "John" );
+		ICharacter*	targetCharacter = new Character( "Victim" );
 
-		std::cout << std::endl;
-
-		std::cout	<< "========= DEFAULT HEAP CONSTRUCTOR TEST ========="
-					<< std::endl << std::endl; 
-
-		std::cout << std::endl;
-
-		std::cout	<< "========= COPY CONSTRUCTOR AND ASSIGNMENT TEST ========="
-					<< std::endl << std::endl; 
-
-
-		std::cout << std::endl;
-
-		std::cout	<< "========= DOG AND CAT ARRAY TEST ========="
-					<< std::endl << std::endl; 
-
-
-		std::cout << std::endl;
-
-		std::cout	<< "========= MAKE SOUND METHOD TEST ========="
-					<< std::endl << std::endl; 
+		std::cout	<< "created a new character named " 
+					<< testCharacter.getName() << " and " 
+					<< targetCharacter->getName()
+					<< std::endl;
 		
+		std::cout << std::endl;
+
+		std::cout	<< "========= HEAP AND EQUIP MATERIA TEST ========="
+					<< std::endl << std::endl; 
+
+		AMateria*	littleIce = new Ice();
+		AMateria*	littleCure = new Cure();
+		
+		testCharacter.equip( littleIce );	
+		testCharacter.equip( littleCure );	
+
+		std::cout	<< "Equipped little ice and little cure"
+					<< std::endl;
+		
+		std::cout << std::endl;
+
+		std::cout	<< "========= UNEQUIP TEST ========="
+					<< std::endl << std::endl; 
+
+		testCharacter.unequip( 0 );	
+		testCharacter.use(0, *targetCharacter); // unequipped materia test
+
+		std::cout	<< "Unequipped little ice"
+					<< std::endl;
 
 		std::cout << std::endl;
 
-		std::cout	<< "========= ARRAY DESTRUCTOR TEST ========="
+		std::cout	<< "========= USE MATERIA TEST ========="
 					<< std::endl << std::endl; 
+
+		testCharacter.equip( littleIce );	
+		testCharacter.use(0, *targetCharacter);
+
+		testCharacter.use(10, *targetCharacter); // wrong ID test
+		
+		std::cout << std::endl;
+
+		std::cout	<< "========= CLONE TEST ========="
+					<< std::endl << std::endl; 
+
+		AMateria* cloneLittleIce = littleIce->clone();
+		AMateria* cloneLittleCure = littleCure->clone();
+
+		std::cout	<< "cloned both little ice and little cure"
+					<< std::endl;
+
+		std::cout << std::endl;
+
+		std::cout	<< "========= DEEP COPY TEST ========="
+					<< std::endl << std::endl; 
+	
+		Character*	original = new Character( "Original" );
+		original->equip( new Ice() );
+		
+		Character* copy = new Character( *original );
+		copy->use(0, *original);
+
+		std::cout	<< "cloned both little ice and little cure"
+					<< std::endl;
+
+		std::cout << std::endl;
+
+		std::cout	<< "========= MATERIA SOURCE TEST ========="
+					<< std::endl << std::endl; 
+
+		IMateriaSource* newSource = new MateriaSource();
+
+		newSource->learnMateria( cloneLittleCure );
+		newSource->learnMateria( cloneLittleIce );
+
+		AMateria*	createLittleIce = newSource->createMateria("ice");	
+		AMateria*	createLittleCure = newSource->createMateria("cure");	
+
+		targetCharacter->equip(createLittleIce);
+		targetCharacter->equip(createLittleCure);
+
+		std::cout	<< "Made new materia based of clones and equipped them to "
+					<< targetCharacter->getName()
+					<< std::endl;
+
+		targetCharacter->use(0, testCharacter);
+		targetCharacter->use(1, testCharacter);
 
 		std::cout << std::endl;
 
@@ -79,19 +141,24 @@ int	main(int ac, char **av)
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
 		me->use(1, *bob);
+		delete src;
 		delete bob;
 		delete me;
-		delete src;
 
 		std::cout << std::endl;
 
 		std::cout	<< "========= DEFAULT HEAP DESTRUCTOR TEST ========="
 					<< std::endl << std::endl; 
 
+		delete (targetCharacter);
+		delete (newSource);
+		delete (original);
+		delete (copy);
+
+		std::cout 	<< "deleted targetCharacter, newSource, original and copy"
+					<< std::endl;
 
 		std::cout << std::endl;
-		std::cout	<< "========= DEFAULT STACK DESTRUCTOR TEST ========="
-					<< std::endl << std::endl; 
 	}
 	return (0);
 }

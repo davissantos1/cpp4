@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 19:53:29 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/22 00:05:45 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 15:43:14 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ void MateriaSource::learnMateria(AMateria* mat)
 	for (int i = 0; i < this->_sourcesSize; i++)
 	{
 		if (!this->_sources[i])
+		{
 			this->_sources[i] = mat->clone();
+			delete (mat);
+			return ;
+		}
 	}
 }
 
@@ -74,7 +78,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 	for (int i = 0; i < this->_sourcesSize; i++)
 	{
 		if (this->_sources[i]->getType() == type)
-			return (this->_sources[i]);
+			return (this->_sources[i]->clone());
 	}
 	return (0);
 }
