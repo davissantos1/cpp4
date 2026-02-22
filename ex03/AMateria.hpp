@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 17:38:00 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/21 16:29:55 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 21:37:51 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <string>
 # include <iostream>
+
+class ICharacter;
 
 class AMateria
 {

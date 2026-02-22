@@ -6,11 +6,12 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:07:50 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/21 17:22:44 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 21:44:41 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
+#include "ICharacter.hpp"
 
 // Constructors / Destructors
 

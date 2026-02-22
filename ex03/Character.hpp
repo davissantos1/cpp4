@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:32:15 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/21 18:55:23 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 00:13:16 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Character : public ICharacter
 
 	public:
 		Character();
-		Character( const std::string name);
+		Character( const std::string name );
 		Character( const Character& other );
 		~Character();
 

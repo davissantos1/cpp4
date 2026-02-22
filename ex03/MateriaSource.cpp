@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 19:53:29 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/21 20:00:40 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 00:05:45 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,67 @@
 
 // Constructors / Destructors
 
-MateriaSource::MateriaSource() {}
+MateriaSource::MateriaSource() 
+{
+	for (int i = 0; i < this->_sourcesSize; i++)
+		this->_sources[i] = NULL;
+}
 
-MateriaSource::MateriaSource( const MateriaSource& other ) {}
+MateriaSource::MateriaSource( const MateriaSource& other ) 
+{
+	if (this != &other)
+	{
+		for (int i = 0; i < this->_sourcesSize; i++)
+			this->_sources[i] = NULL;
+		*this = other;
+	}
+}
 
-MateriaSource::~MateriaSource() {}
+MateriaSource::~MateriaSource() 
+{
+	for (int i = 0; i < this->_sourcesSize; i++)
+	{
+		if (this->_sources[i])
+			delete (this->_sources[i]);
+	}
+}
 
 // Operator overloading
 
-MateriaSource&	MateriaSource::operator=( const MateriaSource& other ) {}
+MateriaSource&	MateriaSource::operator=( const MateriaSource& other ) 
+{
+	if (this != &other)
+	{
+		for (int i = 0; i < _sourcesSize; i++)
+		{
+			if (this->_sources[i])
+				delete (this->_sources[i]);
+			if (other._sources[i])
+				this->_sources[i] = other._sources[i]->clone();
+		}
+	}
+	return (*this);
+}
 
 // Other Methods
 
-void MateriaSource::learnMateria(AMateria*)
+void MateriaSource::learnMateria(AMateria* mat)
 {
-
+	if (!mat)
+		return ;
+	for (int i = 0; i < this->_sourcesSize; i++)
+	{
+		if (!this->_sources[i])
+			this->_sources[i] = mat->clone();
+	}
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-
+	for (int i = 0; i < this->_sourcesSize; i++)
+	{
+		if (this->_sources[i]->getType() == type)
+			return (this->_sources[i]);
+	}
+	return (0);
 }

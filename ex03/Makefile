@@ -2,10 +2,10 @@
 
 CC= c++
 CFLAGS= -Wall -Wextra -Werror -std=c++98
-SRC= main.cpp AMateria.cpp ICharacter.cpp Ice.cpp Cure.cpp Character.cpp IMateriaSource.cpp MateriaSource.cpp
+SRC= main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 
 OBJ= $(SRC:.cpp=.o)
-NAME= animals_with_brains
+NAME= materia
 
 # Makeflags
 MAKEFLAGS += --no-print-directory

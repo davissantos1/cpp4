@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:05:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/29 18:29:29 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 21:39:11 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "AMateria.hpp"
 
-class Cure : public IMateria
+class Cure : public AMateria
 {
 	public:
 		Cure();

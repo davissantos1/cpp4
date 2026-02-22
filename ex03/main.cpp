@@ -6,11 +6,15 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 20:26:21 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/21 16:27:51 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 21:26:28 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Materia.hpp"
+#include "AMateria.hpp"
+#include "Cure.hpp"
+#include "Ice.hpp"
+#include "Character.hpp"
+#include "MateriaSource.hpp"
 
 int	main(int ac, char **av)
 {
